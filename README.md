@@ -1,6 +1,8 @@
 # SavaBadge
 
-A minimal Python script to host and preview HTML files locally.
+A minimal Python script to host and preview HTML files locally. 
+
+<img src="Image/Card.png" width="600px">
 
 ## Features
 * **Auto-Preview**: Opens your browser to the target HTML file automatically.
