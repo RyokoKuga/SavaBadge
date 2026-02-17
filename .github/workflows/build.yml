@@ -1,4 +1,4 @@
-name: Build SavaBadge macOS Only
+name: Build SavaBadge EXE
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
   workflow_dispatch: 
 
 jobs:
-  build-macos:
-    runs-on: macos-15-intel
+  build:
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,19 +24,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install nuitka zstandard
-      - name: Build App
+      - name: Build EXE with Nuitka
         uses: Nuitka/Nuitka-Action@main
         with:
           nuitka-version: main
           script-name: SavaBadge.py
-          mode: app
+          mode: onefile
+          # パラメータ名を修正: windows-disable-console -> disable-console
           disable-console: false
-          # --- アイコン設定を追加 ---
-          macos-app-icon: Image/icon.icns
+          windows-icon-from-ico: Image/icon.ico
 
-      - name: Upload macOS App
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SavaBadge-macOS
-          # 拡張子が .app のディレクトリをアップロード
-          path: build/*.app
+          name: SavaBadge-Windows-EXE
+          path: build/*.exe
