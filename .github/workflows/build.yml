@@ -29,7 +29,6 @@ jobs:
         with:
           nuitka-version: main
           script-name: SavaBadge.py
-          # --- 徹底的に重複を排除 ---
           mode: app
           disable-console: false
           # --- アイコン設定を追加 ---
