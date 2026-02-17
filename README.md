@@ -10,7 +10,10 @@ A minimal Python script to host and preview HTML files locally.
 * **No Dependencies**: Uses only Python standard libraries.
 
 ## Quick Start
-Place `SavaBadge.py` in your project folder and run it.
+Place `SavaBadge.py` in your project folder and run it.  
+
+> [!TIP]
+> To quickly generate a startup script for any existing HTML project, we recommend using **SavaBadgeGenerator.py**.
 
 ## Configuration
 Customize settings in `config.json`:
