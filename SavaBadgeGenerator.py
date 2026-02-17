@@ -17,8 +17,8 @@ def create_launcher_script():
     # メッセージの定義（日本語・英語切り替え）
     msgs = {
         'ja': {
-            'step1': "手順 1: プロジェクトのルートディレクトリを選択してください。",
-            'step2': "手順 2: 最初に開くHTMLファイルを選択してください。",
+            'step1': "Step 1: プロジェクトのルートディレクトリを選択してください。",
+            'step2': "Step 2: 最初に開くHTMLファイルを選択してください。",
             'err_title': "エラー",
             'err_path': "HTMLファイルはルートディレクトリ内にある必要があります。",
             'done_title': "完了",
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     )
 
     # 4. 選択されたディレクトリ内に保存
-    output_filename = "run_app.py"
+    output_filename = "SavaBadge.py"
     output_path = os.path.join(base_dir, output_filename)
 
     try:
