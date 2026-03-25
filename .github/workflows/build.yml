@@ -1,4 +1,4 @@
-name: Build InstantSava macOS Only
+name: Build InstantSava Multi-OS
 
 on:
   push:
@@ -8,8 +8,9 @@ on:
   workflow_dispatch: 
 
 jobs:
-  build-macos:
-    runs-on: macos-15-intel
+  # --- Windows ---
+  build-windows:
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,6 +24,39 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install nuitka zstandard
+
+      - name: Build EXE with Nuitka
+        uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script-name: SavaBadge.py
+          mode: onefile
+          disable-console: true
+          [cite_start]windows-icon-from-ico: Image/icon.ico
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SavaBadge-Windows-EXE
+          path: build/*.exe
+
+  # --- macOS ---
+  build-macos:
+    [cite_start]runs-on: macos-15-intel
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install nuitka zstandard
+
       - name: Build App
         uses: Nuitka/Nuitka-Action@main
         with:
